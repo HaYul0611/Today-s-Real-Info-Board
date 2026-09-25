@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘의 진짜 정보판 — 데이터가 안 올 때</title>
+  <meta name="description" content="매일 변하는 비개인 공개 원천의 값을 기록하고 어제와 비교하며, 데이터가 오지 않을 때도 마지막 정상값을 보존하고 정직하게 설명하는 신뢰 정보판">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Luminous Floating Orbs (Background Dynamic Motion) -->
+  <div class="ambient-background-glow" aria-hidden="true">
+      <div class="ambient-orb orb-1"></div>
+      <div class="ambient-orb orb-2"></div>
+      <div class="ambient-orb orb-3"></div>
+      <!-- Financial Glyphs floating in background for Forex theme -->
+      <div class="ambient-currency-symbols" id="ambient-currency-symbols">
+        <span class="floating-currency-symbol sym-1">$</span>
+        <span class="floating-currency-symbol sym-2">€</span>
+        <span class="floating-currency-symbol sym-3">¥</span>
+        <span class="floating-currency-symbol sym-4">£</span>
+        <span class="floating-currency-symbol sym-5">₩</span>
+        <span class="floating-currency-symbol sym-6">CHF</span>
+        <span class="floating-currency-symbol sym-7">▲</span>
+        <span class="floating-currency-symbol sym-8">▼</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Top Header -->
+      <header class="app-header">
+        <div class="brand-section">
+          <div class="brand-icon-box" aria-hidden="true">
+            <!-- Activity Wave SVG -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>오늘의 진짜 정보판</h1>
+            <p>데이터가 안 올 때도 정직하게 설명하는 신뢰 보존 대시보드</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Live Real-Time Clock Ticker -->
+          <div class="live-clock-badge" id="live-clock-badge" title="한국 표준시 (KST) 실시간 시계">
+            <span class="live-clock-dot"></span>
+            <span id="live-clock-text">KST --:--:--</span>
+          </div>
+
+          <!-- Signal Switcher -->
+          <div class="mode-switch-wrapper" role="group" aria-label="데이터 신호 선택">
+            <button type="button" class="mode-btn active" id="btn-mode-weather">
+              <!-- Cloud Sun SVG -->
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="M20 12h2"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+                <path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path>
+                <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path>
+              </svg>
+              <span>전국 기온 (실시간)</span>
+            </button>
+            <button type="button" class="mode-btn" id="btn-mode-forex">
+              <!-- Currency SVG -->
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+              <span>원/달러 환율 (실시간)</span>
+            </button>
+          </div>
+
+          <!-- Global Status Pill -->
+          <div id="global-status-pill" class="status-pill fresh">
+            <span class="pulse-dot"></span>
+            <span id="status-text">최신 정상 수신 (fresh / none)</span>
+          </div>
+
+          <!-- Refresh Button -->
+          <button type="button" class="btn btn-primary" id="btn-refresh" title="실시간 데이터 새로고침">
+            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            <span>실시간 조회</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Nationwide Region Explorer Card (전국 50개 도시 검색 & 권역별 필터링) -->
+      <section class="region-explorer-card" id="region-explorer-section">
+        <div class="region-explorer-header">
+          <div class="region-title-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <h3>전국 관측 지역 탐색</h3>
+            <span class="region-badge-count" id="city-match-count">전체 지역</span>
+          </div>
+
+          <!-- Search Input & Expand Toggle -->
+          <div class="region-header-controls">
+            <div class="region-search-box">
+              <svg class="region-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="city-search-input" placeholder="전국 시·군 검색 (예: 수원, 제주, 포항, 강릉)" autocomplete="off">
+            </div>
+            <button type="button" class="btn-toggle-expand" id="btn-toggle-cities" title="지역 목록 전체 접기/펼치기">
+              <span id="btn-toggle-cities-text">접기</span>
+              <svg id="btn-toggle-cities-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="explorer-collapsible-body" id="region-explorer-body">
+          <!-- Province Filter Chips -->
+          <div class="province-filter-row" id="province-filter-list">
+            <!-- Rendered dynamically: 전체, 수도권, 강원권, 충청권, 호남권, 영남권, 제주권 -->
+          </div>
+
+          <!-- All Matched City Pills -->
+          <div class="city-pill-list" id="city-pill-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Global Forex Currency Explorer Card (전 세계 160+ 통화 검색 & 카테고리 필터링) -->
+      <section class="forex-explorer-card" id="forex-explorer-section" style="display: none;">
+        <div class="forex-explorer-header">
+          <div class="forex-title-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            <h3>전 세계 공식 환율 실시간 탐색</h3>
+            <span class="forex-badge-count" id="forex-match-count">160+ 글로벌 통화</span>
+          </div>
+
+          <!-- Currency Search Input & Expand Toggle -->
+          <div class="forex-header-controls">
+            <div class="forex-search-box">
+              <svg class="forex-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="forex-search-input" placeholder="국가명 또는 통화 코드 검색 (예: 달러, 엔, 유로, 바트, CAD, AUD...)" autocomplete="off">
+            </div>
+            <button type="button" class="btn-toggle-expand" id="btn-toggle-currencies" title="통화 목록 전체 접기/펼치기">
+              <span id="btn-toggle-currencies-text">접기</span>
+              <svg id="btn-toggle-currencies-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="explorer-collapsible-body" id="forex-explorer-body">
+          <!-- Forex Category Filter Chips -->
+          <div class="forex-category-row" id="forex-category-list">
+            <!-- Rendered dynamically: 전체 (160+), 주요 5대, 아시아, 유럽, 미주, 중동/기타 -->
+          </div>
+
+          <!-- All Matched Currency Pills -->
+          <div class="currency-pill-list" id="currency-pill-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <div class="forex-source-hint-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>실시간 글로벌 외환 현물 시장(Spot FX) 및 야후·구글 파이낸스 실시간 시세 (원하는 통화를 클릭하면 즉시 환산됩니다)</span>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Hero Metric Card -->
+        <section class="glass-card hero-glass-card">
+          <div class="hero-main-layout">
+            <!-- Left Column: Title, Metric + Inline Weather Condition Badge, Converter, Delta -->
+            <div class="hero-left-content">
+              <div class="signal-title-area">
+                <h2>
+                  <span id="hero-signal-title">서울 현재 기온 지수</span>
+                  <div class="location-badge" id="selected-location-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span class="location-name">서울</span>
+                  </div>
+                </h2>
+              </div>
+              <p class="signal-desc" id="hero-signal-desc">
+                Open-Meteo 실시간 관측 • 비개인 공개 데이터 • 지상 2m 기온
+              </p>
+
+              <!-- Metric & Inline Weather Badge Side-by-Side (User Request: 23.2도씨 옆에 기상 정보 위치) -->
+              <div class="metric-visual-inline-group">
+                <!-- Big Metric Numerals (No clipping guaranteed) -->
+                <div class="metric-primary-display">
+                  <span class="big-metric-value" id="metric-value">—</span>
+                  <span class="metric-unit" id="metric-unit">°C</span>
+                  <span id="stale-badge" class="stale-badge-tag" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <span>오래된 값 (stale)</span>
+                  </span>
+                </div>
+
+                <!-- Weather Visual Emblem Card (Positioned directly next to the 23.2°C temperature) -->
+                <div class="weather-inline-badge" id="weather-inline-badge">
+                  <div class="weather-badge-icon" id="weather-emblem-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="5" fill="#fef3c7"></circle>
+                      <line x1="12" y1="1" x2="12" y2="3"></line>
+                      <line x1="12" y1="21" x2="12" y2="23"></line>
+                      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                      <line x1="1" y1="12" x2="3" y2="12"></line>
+                      <line x1="21" y1="12" x2="23" y2="12"></line>
+                      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                  </div>
+                  <div class="weather-badge-info">
+                    <div class="weather-visual-condition" id="weather-visual-condition">실시간 관측 중</div>
+                    <div class="weather-visual-sub" id="weather-visual-sub">서울 표준 관측소</div>
+                    <div class="weather-live-chip">
+                      <span class="live-pulse-dot"></span>
+                      <span>실시간 동기화 활성</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Real-time Live Currency Converter Box (User Request: 실시간 사용자가 입력하면 원화 바뀌는 값이 계산되어 노출) -->
+              <div class="forex-live-converter" id="forex-live-converter" style="display: none;">
+                <div class="converter-box-inner">
+                  <div class="converter-input-col">
+                    <label for="forex-amount-input" class="converter-label">환산 금액 직접 입력 (실시간 원화 계산)</label>
+                    <div class="converter-input-wrap">
+                      <input type="number" id="forex-amount-input" value="1" min="0" step="any" placeholder="1" inputmode="decimal">
+                      <span class="converter-currency-tag" id="forex-amount-unit">USD ($)</span>
+                    </div>
+                  </div>
+                  <div class="converter-quick-col">
+                    <span class="quick-label">빠른 금액 선택</span>
+                    <div class="converter-quick-buttons">
+                      <button type="button" class="btn-quick-amount" data-add="1">1</button>
+                      <button type="button" class="btn-quick-amount" data-add="10">+10</button>
+                      <button type="button" class="btn-quick-amount" data-add="100">+100</button>
+                      <button type="button" class="btn-quick-amount" data-add="1000">+1,000</button>
+                      <button type="button" class="btn-quick-amount btn-reset" data-action="reset">초기화</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="converter-rate-hint" id="forex-rate-hint">
+                  실시간 공식 외환 시세 데이터를 불러오는 중입니다...
+                </div>
+              </div>
+
+              <!-- Day-over-Day Comparison -->
+              <div class="delta-box">
+                <span class="delta-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>어제 대비 변화 (Day-over-Day)</span>
+                </span>
+                <div class="delta-indicator unchanged" id="delta-indicator">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  <span>계산 대기 중</span>
+                </div>
+              </div>
+              <p id="delta-desc" class="delta-subtext">
+                원자료에 보존된 일별 기록을 바탕으로 전일 대비 변화를 엄격히 재계산합니다.
+              </p>
+
+              <!-- 7-Day Sparkline Trend Chart Card (User Request: 네이버 환율처럼 최근 추세 차트 제공) -->
+              <div class="trend-chart-card" id="trend-chart-card" style="display: none;">
+                <div class="trend-chart-header">
+                  <div class="trend-chart-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                      <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    <span id="trend-chart-heading">최근 7일 변동 추이 차트</span>
+                  </div>
+                  <span class="trend-chart-badge" id="trend-chart-badge">실시간 7일 연속</span>
+                </div>
+                <div class="trend-chart-viewport" id="trend-chart-viewport">
+                  <!-- Rendered dynamically via JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Korea Live Weather Map (User Request: 기상청처럼 대한민국 지도 모형 위에 각 지역별 기상 노출) / Forex Live Board -->
+            <div class="hero-right-panel" id="hero-right-panel">
+              <!-- 1. South Korea Live Regional Weather Map Card (Weather mode) -->
+              <div class="korea-map-card" id="korea-weather-map-card">
+                <div class="map-card-header">
+                  <div class="map-header-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                      <line x1="9" y1="3" x2="9" y2="18"></line>
+                      <line x1="15" y1="6" x2="15" y2="21"></line>
+                    </svg>
+                    <span>기상청 실시간 전국 기상도</span>
+                  </div>
+                  <div class="map-live-tag">
+                    <span class="live-pulse-dot"></span>
+                    <span>실시간 관측</span>
+                  </div>
+                </div>
+
+                <!-- Korea Map Viewport & Regional Overlay Pins -->
+                <div class="korea-map-viewport">
+                  <div class="korea-map-stage">
+                    <img src="/img/kma_korea_map.png" alt="기상청 실시간 전국 기상도" class="korea-map-base-img" />
+                    <!-- Dynamic Pins for Major Weather Anchor Cities Across Korea -->
+                    <div class="korea-map-pins-overlay" id="korea-map-pins-container">
+                      <!-- Injected dynamically via JS: 서울, 춘천, 강릉, 수원, 대전, 청주, 전주, 광주, 대구, 포항, 부산, 여수, 제주, 울릉 -->
+                    </div>
+                  </div>
+                </div>
+                <div class="map-card-footer">
+                  <span class="map-footer-hint">지도 위 지역 클릭 시 실시간 기온으로 즉시 전환됩니다</span>
+                </div>
+              </div>
+
+              <!-- 2. Forex Live Cross Board (Forex mode) -->
+              <div class="forex-live-board-card" id="forex-live-board-card" style="display: none;">
+                <div class="fx-board-header">
+                  <div class="fx-board-title">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>실시간 글로벌 외환 시세판</span>
+                  </div>
+                  <span class="fx-board-chip">LIVE HIGH-FREQ</span>
+                </div>
+                <div class="fx-board-ticker-list" id="fx-board-ticker-list">
+                  <!-- Injected dynamically via JS -->
+                </div>
+                <div class="fx-board-footer">
+                  <span>유럽중앙은행(ECB) 및 글로벌 외환 고시 연동</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- Extra Dynamic Weather Metrics Bar (체감온도, 습도, 풍속, 기상상태) -->
+        <div class="extra-metrics-bar" id="extra-metrics-bar" style="display: none;">
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-amber">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">체감 온도</span>
+              <span class="sub-metric-value" id="metric-apparent-temp">—</span>
+            </div>
+          </div>
+
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-blue">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">실시간 습도</span>
+              <span class="sub-metric-value" id="metric-humidity">—</span>
+            </div>
+          </div>
+
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-teal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2">
+                </path>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">관측 풍속</span>
+              <span class="sub-metric-value" id="metric-wind">—</span>
+            </div>
+          </div>
+
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-purple">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">기상 상태</span>
+              <span class="sub-metric-value" id="metric-condition">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extra Dynamic Forex Metrics Bar (기준통화, 대상통화, 고시기관, 시장상태) -->
+        <div class="extra-metrics-bar extra-forex-bar" id="extra-forex-metrics-bar" style="display: none;">
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-emerald">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">기준 통화</span>
+              <span class="sub-metric-value" id="forex-metric-base">USD ($)</span>
+            </div>
+          </div>
+
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-blue">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">대상 통화</span>
+              <span class="sub-metric-value" id="forex-metric-target">KRW (₩)</span>
+            </div>
+          </div>
+
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-teal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"></path>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">고시 원천</span>
+              <span class="sub-metric-value" id="forex-metric-source">ECB/글로벌 고시</span>
+            </div>
+          </div>
+
+          <div class="sub-metric-card">
+            <div class="sub-metric-icon icon-purple">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="sub-metric-info">
+              <span class="sub-metric-label">고시 상태</span>
+              <span class="sub-metric-value" id="forex-metric-status">정상 고시</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Honest Failure Banner -->
+        <div class="honest-banner" id="honest-banner">
+          <div class="banner-header">
+            <div class="banner-title">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span id="banner-title">외부 원천 지연 발생</span>
+            </div>
+            <button type="button" class="btn btn-retry" id="btn-retry-failure">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+              <span>다시 시도 (Retry)</span>
+            </button>
+          </div>
+          <div class="banner-body" id="banner-body">
+            외부 데이터 응답이 지연되었으나, 마지막 정상값을 안전하게 유지하고 있습니다.
+          </div>
+          <div class="banner-action-guide" id="banner-action-guidance">
+            <strong>권장 조치:</strong> 잠시 후 다시 시도 버튼을 클릭해 주세요.
+          </div>
+        </div>
+
+        <!-- 6 Essential Metadata Grid -->
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>관측값 / 단위 (Value & Unit)</span>
+            </span>
+            <span class="meta-value"><span id="meta-value">—</span> <span id="meta-unit">°C</span></span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              <span>데이터 출처 (Source & URL)</span>
+            </span>
+            <span class="meta-value" id="meta-source">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>원천 관측 시각 (Source Time)</span>
+            </span>
+            <span class="meta-value" id="meta-source-time">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>수신 시각 (Fetched At)</span>
+            </span>
+            <span class="meta-value" id="meta-fetched-at">—</span>
+          </div>
+          <div class="meta-item" style="grid-column: 1 / -1;">
+            <span class="meta-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+              </svg>
+              <span>기준 시간대 (Timezone)</span>
+            </span>
+            <span class="meta-value" id="meta-timezone">Asia/Seoul (KST, UTC+09:00)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Analysis and History Tabs -->
+      <section class="glass-card">
+        <nav class="tabs-header" aria-label="기능 탭">
+          <button type="button" class="tab-btn active" data-tab="tab-history">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>일별 기록 보관소 (<span id="history-row-count">0건</span>)</span>
+          </button>
+
+          <button type="button" class="tab-btn" data-tab="tab-inspector">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>데이터 3자 대조기 (원자료·저장값·화면값)</span>
+          </button>
+
+          <button type="button" class="tab-btn" data-tab="tab-simulator">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+            <span>데이터 복원력 시험 (장애 시뮬레이터)</span>
+          </button>
+        </nav>
+
+        <!-- Tab 1: Daily History Table -->
+        <div class="tab-pane active" id="tab-history">
+          <div style="margin-bottom: 14px;">
+            <p style="font-size: 0.84rem; color: var(--text-muted);">
+              Asia/Seoul 기준 <code>record_date</code>를 고유키로 삼아 같은 날 여러 번 수신되어도 1건으로 원자적 갱신하며, 익일 성공 시 신규 일별 행이 축적됩니다.
+            </p>
+          </div>
+
+          <div class="table-responsive">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>기준 일자 (KST)</th>
+                  <th>관측 정규화값</th>
+                  <th>어제 대비 변화</th>
+                  <th>최종 수신 시각</th>
+                  <th>출처 확인</th>
+                  <th>보존 상태</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <!-- Dynamically Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 2: Tri-Inspector (C10) -->
+        <div class="tab-pane" id="tab-inspector">
+          <div
+            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0;">
+              원천 API 응답, 내부 저장소 정규화 레코드, UI 화면 표시값의 3자 일치성을 검증합니다.
+            </p>
+            <span class="status-pill fresh" style="padding: 4px 10px; font-size: 0.76rem;">
+              <span class="pulse-dot"></span> 3자 데이터 일치 확인
+            </span>
+          </div>
+
+          <div class="inspector-grid">
+            <!-- 1. Raw API Response -->
+            <div class="inspector-card">
+              <div class="inspector-card-header">
+                <h4>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                  <span>1. 원자료 (Raw API Response)</span>
+                </h4>
+                <span class="inspector-badge">수신 패킷</span>
+              </div>
+              <pre class="code-box" id="inspector-raw">// 원자료 대기 중...</pre>
+            </div>
+
+            <!-- 2. Stored DB Row -->
+            <div class="inspector-card">
+              <div class="inspector-card-header">
+                <h4>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
+                  <span>2. 저장값 (Normalized Record)</span>
+                </h4>
+                <span class="inspector-badge">일별 저장소</span>
+              </div>
+              <pre class="code-box" id="inspector-stored">// 저장값 대기 중...</pre>
+            </div>
+
+            <!-- 3. Screen UI Value -->
+            <div class="inspector-card">
+              <div class="inspector-card-header">
+                <h4>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                  <span>3. 화면값 (Screen Display)</span>
+                </h4>
+                <span class="inspector-badge">실제 화면</span>
+              </div>
+              <div class="screen-preview-box">
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">현재 렌더링 값</div>
+                <div class="screen-preview-val" id="preview-screen-val">—</div>
+                <div style="font-size: 0.78rem; color: var(--color-fresh); font-weight: 600;">
+                  단위 및 수치 완벽 일치
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Failure Resilience Simulator -->
+        <div class="tab-pane" id="tab-simulator">
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px;">
+            외부 데이터가 오지 않거나 오류가 발생했을 때의 복원력을 가상 시험값으로 즉시 검증할 수 있습니다.
+          </p>
+
+          <div class="sim-grid">
+            <button type="button" class="sim-btn" id="btn-sim-timeout">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>응답 지연 (Timeout)</span>
+            </button>
+            <button type="button" class="sim-btn" id="btn-sim-auth">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>인증 거절 (401/403)</span>
+            </button>
+            <button type="button" class="sim-btn" id="btn-sim-rate">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>호출 제한 (429 Rate)</span>
+            </button>
+            <button type="button" class="sim-btn" id="btn-sim-offline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+                <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+                <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+                <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+                <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                <line x1="12" y1="20" x2="12.01" y2="20"></line>
+              </svg>
+              <span>네트워크 단절 (Offline)</span>
+            </button>
+            <button type="button" class="sim-btn" id="btn-sim-schema">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+              <span>형식 변경 (Schema Break)</span>
+            </button>
+            <button type="button" class="sim-btn recover" id="btn-sim-recover">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span>정상 회복 (RECOVER-D2)</span>
+            </button>
+            <button type="button" class="sim-btn" id="btn-sim-2days">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>실제 이틀 기록 적재</span>
+            </button>
+            <button type="button" class="sim-btn" id="btn-sim-reset">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              <span>상태 초기화 (Reset)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Clean, Natural, and Authentic Product Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <div class="footer-brand-title">오늘의 진짜 정보판</div>
+        <p class="footer-desc">
+          전국 50개 주요 도시 실시간 기상 관측 및 금융 데이터 신뢰성 대시보드
+        </p>
+        <div class="footer-meta">
+          <span>데이터 원천: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> & <a
+              href="https://www.frankfurter.app/" target="_blank" rel="noopener noreferrer">European Central
+              Bank</a></span>
+          <span class="sep">•</span>
+          <span>공공 기상 및 금융 데이터 기준 실시간 동기화</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

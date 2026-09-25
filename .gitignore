@@ -1,0 +1,18 @@
+# 과제 지문 및 제출 전용 문서 (T04 보안/제출 기준에 따라 Git 공개 제외)
+과제 4.txt
+과제_제출문.md
+
+# 시스템 및 종속성
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# 비밀값 및 로컬 설정 (T04-C11 비밀키 0건 준수)
+.env
+.env.*
+*.secret
+
+# IDE 설정
+.vscode/
+.idea/

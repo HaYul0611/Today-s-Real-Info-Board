@@ -1,0 +1,20 @@
+{
+  "name": "today-real-information-board",
+  "version": "1.0.0",
+  "description": "오늘의 진짜 정보판 — 데이터가 안 올 때 (T04 Today's Real Information Board)",
+  "main": "js/app.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/test-runner.js",
+    "start": "node test/serve.js"
+  },
+  "keywords": [
+    "t04",
+    "information-board",
+    "resilience",
+    "stale-data",
+    "open-meteo"
+  ],
+  "author": "HAYUL",
+  "license": "MIT"
+}

@@ -13,371 +13,385 @@
 
   <!-- Ambient Luminous Floating Orbs (Background Dynamic Motion) -->
   <div class="ambient-background-glow" aria-hidden="true">
-      <div class="ambient-orb orb-1"></div>
-      <div class="ambient-orb orb-2"></div>
-      <div class="ambient-orb orb-3"></div>
-      <!-- Financial Glyphs floating in background for Forex theme -->
-      <div class="ambient-currency-symbols" id="ambient-currency-symbols">
-        <span class="floating-currency-symbol sym-1">$</span>
-        <span class="floating-currency-symbol sym-2">€</span>
-        <span class="floating-currency-symbol sym-3">¥</span>
-        <span class="floating-currency-symbol sym-4">£</span>
-        <span class="floating-currency-symbol sym-5">₩</span>
-        <span class="floating-currency-symbol sym-6">CHF</span>
-        <span class="floating-currency-symbol sym-7">▲</span>
-        <span class="floating-currency-symbol sym-8">▼</span>
-      </div>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <!-- Financial Glyphs floating in background for Forex theme -->
+    <div class="ambient-currency-symbols" id="ambient-currency-symbols">
+      <span class="floating-currency-symbol sym-1">$</span>
+      <span class="floating-currency-symbol sym-2">€</span>
+      <span class="floating-currency-symbol sym-3">¥</span>
+      <span class="floating-currency-symbol sym-4">£</span>
+      <span class="floating-currency-symbol sym-5">₩</span>
+      <span class="floating-currency-symbol sym-6">CHF</span>
+      <span class="floating-currency-symbol sym-7">▲</span>
+      <span class="floating-currency-symbol sym-8">▼</span>
     </div>
+  </div>
 
-    <div class="container">
-      <!-- Top Header -->
-      <header class="app-header">
-        <div class="brand-section">
-          <div class="brand-icon-box" aria-hidden="true">
-            <!-- Activity Wave SVG -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-            </svg>
-          </div>
-          <div class="brand-text">
-            <h1>오늘의 진짜 정보판</h1>
-            <p>데이터가 안 올 때도 정직하게 설명하는 신뢰 보존 대시보드</p>
-          </div>
+  <div class="container">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-icon-box" aria-hidden="true">
+          <!-- Activity Wave SVG -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>오늘의 진짜 정보판</h1>
+          <p>데이터가 안 올 때도 정직하게 설명하는 신뢰 보존 대시보드</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Live Real-Time Clock Ticker -->
+        <div class="live-clock-badge" id="live-clock-badge" title="한국 표준시 (KST) 실시간 시계">
+          <span class="live-clock-dot"></span>
+          <span id="live-clock-text">KST --:--:--</span>
         </div>
 
-        <div class="header-actions">
-          <!-- Live Real-Time Clock Ticker -->
-          <div class="live-clock-badge" id="live-clock-badge" title="한국 표준시 (KST) 실시간 시계">
-            <span class="live-clock-dot"></span>
-            <span id="live-clock-text">KST --:--:--</span>
-          </div>
-
-          <!-- Signal Switcher -->
-          <div class="mode-switch-wrapper" role="group" aria-label="데이터 신호 선택">
-            <button type="button" class="mode-btn active" id="btn-mode-weather">
-              <!-- Cloud Sun SVG -->
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v2"></path>
-                <path d="m4.93 4.93 1.41 1.41"></path>
-                <path d="M20 12h2"></path>
-                <path d="m19.07 4.93-1.41 1.41"></path>
-                <path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path>
-                <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path>
-              </svg>
-              <span>전국 기온 (실시간)</span>
-            </button>
-            <button type="button" class="mode-btn" id="btn-mode-forex">
-              <!-- Currency SVG -->
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="1" x2="12" y2="23"></line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-              </svg>
-              <span>원/달러 환율 (실시간)</span>
-            </button>
-          </div>
-
-          <!-- Global Status Pill -->
-          <div id="global-status-pill" class="status-pill fresh">
-            <span class="pulse-dot"></span>
-            <span id="status-text">최신 정상 수신 (fresh / none)</span>
-          </div>
-
-          <!-- Refresh Button -->
-          <button type="button" class="btn btn-primary" id="btn-refresh" title="실시간 데이터 새로고침">
-            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 4 23 10 17 10"></polyline>
-              <polyline points="1 20 1 14 7 14"></polyline>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        <!-- Signal Switcher -->
+        <div class="mode-switch-wrapper" role="group" aria-label="데이터 신호 선택">
+          <button type="button" class="mode-btn active" id="btn-mode-weather">
+            <!-- Cloud Sun SVG -->
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="M20 12h2"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+              <path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path>
+              <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path>
             </svg>
-            <span>실시간 조회</span>
+            <span>전국 기온 (실시간)</span>
           </button>
-        </div>
-      </header>
-
-      <!-- Nationwide Region Explorer Card (전국 50개 도시 검색 & 권역별 필터링) -->
-      <section class="region-explorer-card" id="region-explorer-section">
-        <div class="region-explorer-header">
-          <div class="region-title-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            <h3>전국 관측 지역 탐색</h3>
-            <span class="region-badge-count" id="city-match-count">전체 지역</span>
-          </div>
-
-          <!-- Search Input & Expand Toggle -->
-          <div class="region-header-controls">
-            <div class="region-search-box">
-              <svg class="region-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="city-search-input" placeholder="전국 시·군 검색 (예: 수원, 제주, 포항, 강릉)" autocomplete="off">
-            </div>
-            <button type="button" class="btn-toggle-expand" id="btn-toggle-cities" title="지역 목록 전체 접기/펼치기">
-              <span id="btn-toggle-cities-text">접기</span>
-              <svg id="btn-toggle-cities-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="explorer-collapsible-body" id="region-explorer-body">
-          <!-- Province Filter Chips -->
-          <div class="province-filter-row" id="province-filter-list">
-            <!-- Rendered dynamically: 전체, 수도권, 강원권, 충청권, 호남권, 영남권, 제주권 -->
-          </div>
-
-          <!-- All Matched City Pills -->
-          <div class="city-pill-list" id="city-pill-list">
-            <!-- Rendered dynamically -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Global Forex Currency Explorer Card (전 세계 160+ 통화 검색 & 카테고리 필터링) -->
-      <section class="forex-explorer-card" id="forex-explorer-section" style="display: none;">
-        <div class="forex-explorer-header">
-          <div class="forex-title-wrap">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          <button type="button" class="mode-btn" id="btn-mode-forex">
+            <!-- Currency SVG -->
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="1" x2="12" y2="23"></line>
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
             </svg>
-            <h3>전 세계 공식 환율 실시간 탐색</h3>
-            <span class="forex-badge-count" id="forex-match-count">160+ 글로벌 통화</span>
-          </div>
-
-          <!-- Currency Search Input & Expand Toggle -->
-          <div class="forex-header-controls">
-            <div class="forex-search-box">
-              <svg class="forex-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="forex-search-input" placeholder="국가명 또는 통화 코드 검색 (예: 달러, 엔, 유로, 바트, CAD, AUD...)" autocomplete="off">
-            </div>
-            <button type="button" class="btn-toggle-expand" id="btn-toggle-currencies" title="통화 목록 전체 접기/펼치기">
-              <span id="btn-toggle-currencies-text">접기</span>
-              <svg id="btn-toggle-currencies-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
-            </button>
-          </div>
+            <span>원/달러 환율 (실시간)</span>
+          </button>
         </div>
 
-        <div class="explorer-collapsible-body" id="forex-explorer-body">
-          <!-- Forex Category Filter Chips -->
-          <div class="forex-category-row" id="forex-category-list">
-            <!-- Rendered dynamically: 전체 (160+), 주요 5대, 아시아, 유럽, 미주, 중동/기타 -->
-          </div>
-
-          <!-- All Matched Currency Pills -->
-          <div class="currency-pill-list" id="currency-pill-list">
-            <!-- Rendered dynamically -->
-          </div>
+        <!-- Global Status Pill -->
+        <div id="global-status-pill" class="status-pill fresh">
+          <span class="pulse-dot"></span>
+          <span id="status-text">최신 정상 수신 (fresh / none)</span>
         </div>
 
-        <div class="forex-source-hint-row">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-          <span>실시간 글로벌 외환 현물 시장(Spot FX) 및 야후·구글 파이낸스 실시간 시세 (원하는 통화를 클릭하면 즉시 환산됩니다)</span>
+        <!-- Refresh Button -->
+        <button type="button" class="btn btn-primary" id="btn-refresh" title="실시간 데이터 새로고침">
+          <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+          <span>실시간 조회</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Nationwide Region Explorer Card (전국 50개 도시 검색 & 권역별 필터링) -->
+    <section class="region-explorer-card" id="region-explorer-section">
+      <div class="region-explorer-header">
+        <div class="region-title-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <h3>전국 관측 지역 탐색</h3>
+          <span class="region-badge-count" id="city-match-count">전체 지역</span>
         </div>
-      </section>
 
-      <!-- Main Content -->
-      <main>
-        <!-- Hero Metric Card -->
-        <section class="glass-card hero-glass-card">
-          <div class="hero-main-layout">
-            <!-- Left Column: Title, Metric + Inline Weather Condition Badge, Converter, Delta -->
-            <div class="hero-left-content">
-              <div class="signal-title-area">
-                <h2>
-                  <span id="hero-signal-title">서울 현재 기온 지수</span>
-                  <div class="location-badge" id="selected-location-badge">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <span class="location-name">서울</span>
-                  </div>
-                </h2>
-              </div>
-              <p class="signal-desc" id="hero-signal-desc">
-                Open-Meteo 실시간 관측 • 비개인 공개 데이터 • 지상 2m 기온
-              </p>
+        <!-- Search Input & Expand Toggle -->
+        <div class="region-header-controls">
+          <div class="region-search-box">
+            <svg class="region-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="city-search-input" placeholder="전국 시·군 검색 (예: 수원, 제주, 포항, 강릉)" autocomplete="off">
+          </div>
+          <button type="button" class="btn-toggle-expand" id="btn-toggle-cities" title="지역 목록 전체 접기/펼치기">
+            <span id="btn-toggle-cities-text">접기</span>
+            <svg id="btn-toggle-cities-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-              <!-- Metric & Inline Weather Badge Side-by-Side (User Request: 23.2도씨 옆에 기상 정보 위치) -->
-              <div class="metric-visual-inline-group">
-                <!-- Big Metric Numerals (No clipping guaranteed) -->
-                <div class="metric-primary-display">
-                  <span class="big-metric-value" id="metric-value">—</span>
-                  <span class="metric-unit" id="metric-unit">°C</span>
-                  <span id="stale-badge" class="stale-badge-tag" style="display: none;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="12" y1="8" x2="12" y2="12"></line>
-                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                    </svg>
-                    <span>오래된 값 (stale)</span>
-                  </span>
-                </div>
+      <div class="explorer-collapsible-body" id="region-explorer-body">
+        <!-- Province Filter Chips -->
+        <div class="province-filter-row" id="province-filter-list">
+          <!-- Rendered dynamically: 전체, 수도권, 강원권, 충청권, 호남권, 영남권, 제주권 -->
+        </div>
 
-                <!-- Weather Visual Emblem Card (Positioned directly next to the 23.2°C temperature) -->
-                <div class="weather-inline-badge" id="weather-inline-badge">
-                  <div class="weather-badge-icon" id="weather-emblem-icon">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="5" fill="#fef3c7"></circle>
-                      <line x1="12" y1="1" x2="12" y2="3"></line>
-                      <line x1="12" y1="21" x2="12" y2="23"></line>
-                      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                      <line x1="1" y1="12" x2="3" y2="12"></line>
-                      <line x1="21" y1="12" x2="23" y2="12"></line>
-                      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                  </div>
-                  <div class="weather-badge-info">
-                    <div class="weather-visual-condition" id="weather-visual-condition">실시간 관측 중</div>
-                    <div class="weather-visual-sub" id="weather-visual-sub">서울 표준 관측소</div>
-                    <div class="weather-live-chip">
-                      <span class="live-pulse-dot"></span>
-                      <span>실시간 동기화 활성</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <!-- All Matched City Pills -->
+        <div class="city-pill-list" id="city-pill-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
 
-              <!-- Real-time Live Currency Converter Box (User Request: 실시간 사용자가 입력하면 원화 바뀌는 값이 계산되어 노출) -->
-              <div class="forex-live-converter" id="forex-live-converter" style="display: none;">
-                <div class="converter-box-inner">
-                  <div class="converter-input-col">
-                    <label for="forex-amount-input" class="converter-label">환산 금액 직접 입력 (실시간 원화 계산)</label>
-                    <div class="converter-input-wrap">
-                      <input type="number" id="forex-amount-input" value="1" min="0" step="any" placeholder="1" inputmode="decimal">
-                      <span class="converter-currency-tag" id="forex-amount-unit">USD ($)</span>
-                    </div>
-                  </div>
-                  <div class="converter-quick-col">
-                    <span class="quick-label">빠른 금액 선택</span>
-                    <div class="converter-quick-buttons">
-                      <button type="button" class="btn-quick-amount" data-add="1">1</button>
-                      <button type="button" class="btn-quick-amount" data-add="10">+10</button>
-                      <button type="button" class="btn-quick-amount" data-add="100">+100</button>
-                      <button type="button" class="btn-quick-amount" data-add="1000">+1,000</button>
-                      <button type="button" class="btn-quick-amount btn-reset" data-action="reset">초기화</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="converter-rate-hint" id="forex-rate-hint">
-                  실시간 공식 외환 시세 데이터를 불러오는 중입니다...
-                </div>
-              </div>
+    <!-- Global Forex Currency Explorer Card (전 세계 160+ 통화 검색 & 카테고리 필터링) -->
+    <section class="forex-explorer-card" id="forex-explorer-section" style="display: none;">
+      <div class="forex-explorer-header">
+        <div class="forex-title-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          <h3>전 세계 공식 환율 실시간 탐색</h3>
+          <span class="forex-badge-count" id="forex-match-count">160+ 글로벌 통화</span>
+        </div>
 
-              <!-- Day-over-Day Comparison -->
-              <div class="delta-box">
-                <span class="delta-label">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        <!-- Currency Search Input & Expand Toggle -->
+        <div class="forex-header-controls">
+          <div class="forex-search-box">
+            <svg class="forex-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="forex-search-input" placeholder="국가명 또는 통화 코드 검색 (예: 달러, 엔, 유로, 바트, CAD, AUD...)"
+              autocomplete="off">
+          </div>
+          <button type="button" class="btn-toggle-expand" id="btn-toggle-currencies" title="통화 목록 전체 접기/펼치기">
+            <span id="btn-toggle-currencies-text">접기</span>
+            <svg id="btn-toggle-currencies-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="explorer-collapsible-body" id="forex-explorer-body">
+        <!-- Forex Category Filter Chips -->
+        <div class="forex-category-row" id="forex-category-list">
+          <!-- Rendered dynamically: 전체 (160+), 주요 5대, 아시아, 유럽, 미주, 중동/기타 -->
+        </div>
+
+        <!-- All Matched Currency Pills -->
+        <div class="currency-pill-list" id="currency-pill-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="forex-source-hint-row">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <span>실시간 글로벌 외환 현물 시장(Spot FX) 및 야후·구글 파이낸스 실시간 시세 (원하는 통화를 클릭하면 즉시 환산됩니다)</span>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Metric Card -->
+      <section class="glass-card hero-glass-card">
+        <div class="hero-main-layout">
+          <!-- Left Column: Title, Metric + Inline Weather Condition Badge, Converter, Delta -->
+          <div class="hero-left-content">
+            <div class="signal-title-area">
+              <h2>
+                <span id="hero-signal-title">서울 현재 기온 지수</span>
+                <div class="location-badge" id="selected-location-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                     stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
                   </svg>
-                  <span>어제 대비 변화 (Day-over-Day)</span>
-                </span>
-                <div class="delta-indicator unchanged" id="delta-indicator">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                  </svg>
-                  <span>계산 대기 중</span>
+                  <span class="location-name">서울</span>
                 </div>
-              </div>
-              <p id="delta-desc" class="delta-subtext">
-                원자료에 보존된 일별 기록을 바탕으로 전일 대비 변화를 엄격히 재계산합니다.
-              </p>
+              </h2>
+            </div>
+            <p class="signal-desc" id="hero-signal-desc">
+              Open-Meteo 실시간 관측 • 비개인 공개 데이터 • 지상 2m 기온
+            </p>
 
-              <!-- 7-Day Sparkline Trend Chart Card (User Request: 네이버 환율처럼 최근 추세 차트 제공) -->
-              <div class="trend-chart-card" id="trend-chart-card" style="display: none;">
-                <div class="trend-chart-header">
-                  <div class="trend-chart-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                      <polyline points="17 6 23 6 23 12"></polyline>
-                    </svg>
-                    <span id="trend-chart-heading">최근 7일 변동 추이 차트</span>
-                  </div>
-                  <span class="trend-chart-badge" id="trend-chart-badge">실시간 7일 연속</span>
+            <!-- Metric & Inline Weather Badge Side-by-Side (User Request: 23.2도씨 옆에 기상 정보 위치) -->
+            <div class="metric-visual-inline-group">
+              <!-- Big Metric Numerals (No clipping guaranteed) -->
+              <div class="metric-primary-display">
+                <span class="big-metric-value" id="metric-value">—</span>
+                <span class="metric-unit" id="metric-unit">°C</span>
+                <span id="stale-badge" class="stale-badge-tag" style="display: none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  <span>오래된 값 (stale)</span>
+                </span>
+              </div>
+
+              <!-- Weather Visual Emblem Card (Positioned directly next to the 23.2°C temperature) -->
+              <div class="weather-inline-badge" id="weather-inline-badge">
+                <div class="weather-badge-icon" id="weather-emblem-icon">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" fill="#fef3c7"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
                 </div>
-                <div class="trend-chart-viewport" id="trend-chart-viewport">
-                  <!-- Rendered dynamically via JS -->
+                <div class="weather-badge-info">
+                  <div class="weather-visual-condition" id="weather-visual-condition">실시간 관측 중</div>
+                  <div class="weather-visual-sub" id="weather-visual-sub">서울 표준 관측소</div>
+                  <div class="weather-live-chip">
+                    <span class="live-pulse-dot"></span>
+                    <span>실시간 동기화 활성</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Right Column: Korea Live Weather Map (User Request: 기상청처럼 대한민국 지도 모형 위에 각 지역별 기상 노출) / Forex Live Board -->
-            <div class="hero-right-panel" id="hero-right-panel">
-              <!-- 1. South Korea Live Regional Weather Map Card (Weather mode) -->
-              <div class="korea-map-card" id="korea-weather-map-card">
-                <div class="map-card-header">
-                  <div class="map-header-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
-                      <line x1="9" y1="3" x2="9" y2="18"></line>
-                      <line x1="15" y1="6" x2="15" y2="21"></line>
-                    </svg>
-                    <span>기상청 실시간 전국 기상도</span>
-                  </div>
-                  <div class="map-live-tag">
-                    <span class="live-pulse-dot"></span>
-                    <span>실시간 관측</span>
+            <!-- Real-time Live Currency Converter Box (User Request: 실시간 사용자가 입력하면 원화 바뀌는 값이 계산되어 노출) -->
+            <div class="forex-live-converter" id="forex-live-converter" style="display: none;">
+              <div class="converter-box-inner">
+                <div class="converter-input-col">
+                  <label for="forex-amount-input" class="converter-label">환산 금액 직접 입력 (실시간 원화 계산)</label>
+                  <div class="converter-input-wrap">
+                    <input type="number" id="forex-amount-input" value="1" min="0" step="any" placeholder="1"
+                      inputmode="decimal">
+                    <span class="converter-currency-tag" id="forex-amount-unit">USD ($)</span>
                   </div>
                 </div>
-
-                <!-- Korea Map Viewport & Regional Overlay Pins -->
-                <div class="korea-map-viewport">
-                  <div class="korea-map-stage">
-                    <img src="/img/kma_korea_map.png" alt="기상청 실시간 전국 기상도" class="korea-map-base-img" />
-                    <!-- Dynamic Pins for Major Weather Anchor Cities Across Korea -->
-                    <div class="korea-map-pins-overlay" id="korea-map-pins-container">
-                      <!-- Injected dynamically via JS: 서울, 춘천, 강릉, 수원, 대전, 청주, 전주, 광주, 대구, 포항, 부산, 여수, 제주, 울릉 -->
-                    </div>
+                <div class="converter-quick-col">
+                  <span class="quick-label">빠른 금액 선택</span>
+                  <div class="converter-quick-buttons">
+                    <button type="button" class="btn-quick-amount" data-add="1">1</button>
+                    <button type="button" class="btn-quick-amount" data-add="10">+10</button>
+                    <button type="button" class="btn-quick-amount" data-add="100">+100</button>
+                    <button type="button" class="btn-quick-amount" data-add="1000">+1,000</button>
+                    <button type="button" class="btn-quick-amount btn-reset" data-action="reset">초기화</button>
                   </div>
-                </div>
-                <div class="map-card-footer">
-                  <span class="map-footer-hint">지도 위 지역 클릭 시 실시간 기온으로 즉시 전환됩니다</span>
                 </div>
               </div>
+              <div class="converter-rate-hint" id="forex-rate-hint">
+                실시간 공식 외환 시세 데이터를 불러오는 중입니다...
+              </div>
+            </div>
 
-              <!-- 2. Forex Live Cross Board (Forex mode) -->
-              <div class="forex-live-board-card" id="forex-live-board-card" style="display: none;">
-                <div class="fx-board-header">
-                  <div class="fx-board-title">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2">
-                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                    </svg>
-                    <span>실시간 글로벌 외환 시세판</span>
-                  </div>
-                  <span class="fx-board-chip">LIVE HIGH-FREQ</span>
+            <!-- Day-over-Day Comparison -->
+            <div class="delta-box">
+              <span class="delta-label">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>어제 대비 변화 (Day-over-Day)</span>
+              </span>
+              <div class="delta-indicator unchanged" id="delta-indicator">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>계산 대기 중</span>
+              </div>
+            </div>
+            <p id="delta-desc" class="delta-subtext">
+              원자료에 보존된 일별 기록을 바탕으로 전일 대비 변화를 엄격히 재계산합니다.
+            </p>
+
+            <!-- 7-Day Sparkline Trend Chart Card (User Request: 네이버 환율처럼 최근 추세 차트 제공) -->
+            <div class="trend-chart-card" id="trend-chart-card" style="display: none;">
+              <div class="trend-chart-header">
+                <div class="trend-chart-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                  </svg>
+                  <span id="trend-chart-heading">최근 7일 변동 추이 차트</span>
                 </div>
-                <div class="fx-board-ticker-list" id="fx-board-ticker-list">
-                  <!-- Injected dynamically via JS -->
-                </div>
-                <div class="fx-board-footer">
-                  <span>유럽중앙은행(ECB) 및 글로벌 외환 고시 연동</span>
-                </div>
+                <span class="trend-chart-badge" id="trend-chart-badge">실시간 7일 연속</span>
+              </div>
+              <div class="trend-chart-viewport" id="trend-chart-viewport">
+                <!-- Rendered dynamically via JS -->
               </div>
             </div>
           </div>
+
+          <!-- Right Column: Korea Live Weather Map (User Request: 기상청처럼 대한민국 지도 모형 위에 각 지역별 기상 노출) / Forex Live Board -->
+          <div class="hero-right-panel" id="hero-right-panel">
+            <!-- 1. South Korea Live Regional Weather Map Card (Weather mode) -->
+            <div class="korea-map-card" id="korea-weather-map-card">
+              <div class="map-card-header">
+                <div class="map-header-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                    <line x1="9" y1="3" x2="9" y2="18"></line>
+                    <line x1="15" y1="6" x2="15" y2="21"></line>
+                  </svg>
+                  <span>기상청 실시간 전국 기상도</span>
+                </div>
+                <div class="map-live-tag">
+                  <span class="live-pulse-dot"></span>
+                  <span>실시간 관측</span>
+                </div>
+              </div>
+
+              <!-- Korea Map Viewport & Regional Overlay Pins -->
+              <div class="korea-map-viewport">
+                <div class="korea-map-stage">
+                  <img src="img/kma_korea_map.png" alt="기상청 실시간 전국 기상도" class="korea-map-base-img" />
+                  <!-- Dynamic Pins for Major Weather Anchor Cities Across Korea -->
+                  <div class="korea-map-pins-overlay" id="korea-map-pins-container">
+                    <!-- Injected dynamically via JS: 서울, 춘천, 강릉, 수원, 대전, 청주, 전주, 광주, 대구, 포항, 부산, 여수, 제주, 울릉 -->
+                  </div>
+                </div>
+              </div>
+              <div class="map-card-footer">
+                <span class="map-footer-hint">지도 위 지역 클릭 시 실시간 기온으로 즉시 전환됩니다</span>
+              </div>
+            </div>
+
+            <!-- 2. Forex Live Cross Board (Forex mode) -->
+            <div class="forex-live-board-card" id="forex-live-board-card" style="display: none;">
+              <div class="fx-board-header">
+                <div class="fx-board-title">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  <span>실시간 글로벌 외환 시세판</span>
+                </div>
+                <span class="fx-board-chip">LIVE HIGH-FREQ</span>
+              </div>
+              <div class="fx-board-ticker-list" id="fx-board-ticker-list">
+                <!-- Injected dynamically via JS -->
+              </div>
+              <div class="fx-board-footer">
+                <span>유럽중앙은행(ECB) 및 글로벌 외환 고시 연동</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Extra Dynamic Weather Metrics Bar (체감온도, 습도, 풍속, 기상상태) -->
         <div class="extra-metrics-bar" id="extra-metrics-bar" style="display: none;">
@@ -440,7 +454,8 @@
         <div class="extra-metrics-bar extra-forex-bar" id="extra-forex-metrics-bar" style="display: none;">
           <div class="sub-metric-card">
             <div class="sub-metric-icon icon-emerald">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="1" x2="12" y2="23"></line>
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
               </svg>
@@ -453,7 +468,8 @@
 
           <div class="sub-metric-card">
             <div class="sub-metric-icon icon-blue">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="12" y1="8" x2="12" y2="12"></line>
                 <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -467,7 +483,8 @@
 
           <div class="sub-metric-card">
             <div class="sub-metric-icon icon-teal">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"></path>
               </svg>
             </div>
@@ -479,7 +496,8 @@
 
           <div class="sub-metric-card">
             <div class="sub-metric-icon icon-purple">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
               </svg>

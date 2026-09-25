@@ -4,6 +4,13 @@
 
 ---
 
+## 🌐 배포 및 라이브 데모 (Live Demo)
+
+* **배포 주소 (GitHub Pages)**: [https://hayul0611.github.io/Today-s-Real-Info-Board/](https://hayul0611.github.io/Today-s-Real-Info-Board/)
+* 별도의 회원가입, 로그인, 인증키 없이 **새 시크릿 창에서 즉시 무로그인 구동**됩니다. (T04-C01 충족)
+
+---
+
 ## 📌 프로젝트 소개
 
 진짜 신뢰받는 데이터 제품은 값이 잘 들어올 때보다 **외부 원천이 지연되거나 장애가 났을 때** 결정됩니다.  
@@ -55,7 +62,10 @@
 
 ## 🚀 실행 방법
 
-### 로컬 환경에서 실행
+### 1. 온라인 웹 환경 (권장)
+* [GitHub Pages 라이브 배포 링크](https://hayul0611.github.io/Today-s-Real-Info-Board/)를 클릭하여 브라우저에서 바로 사용합니다.
+
+### 2. 로컬 개발 환경에서 실행
 ```bash
 # 저장소 복제
 git clone https://github.com/HaYul0611/Today-s-Real-Info-Board.git
@@ -67,7 +77,7 @@ node test/serve.js
 npx serve .
 ```
 
-브라우저에서 `http://127.0.0.1:3456` 또는 안내된 포트로 접속합니다.
+브라우저에서 `http://127.0.0.1:3456` 또는 콘솔에 표시된 로컬 포트로 접속합니다.
 
 ---
 
